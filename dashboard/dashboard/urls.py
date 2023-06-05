@@ -54,5 +54,6 @@ urlpatterns = [
     path('download/', download_csv, name='download_csv'),
 ]
 
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

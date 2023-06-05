@@ -37,7 +37,7 @@ fields = [
 ]
 
 # Age Breakdown //////////////////////////////////////////////////////////////////////////////////////////////
-@cache_page(60*60)
+@cache_page(60*600)
 def breakdown_age(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))
@@ -458,7 +458,7 @@ def breakdown_age(request, id):
 
 
 # Gender Breakdown /////////////////////////////////////////////////////////////////////////////////////////////////
-@cache_page(60*60)
+@cache_page(60*600)
 def breakdown_gender(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))
@@ -870,7 +870,7 @@ def breakdown_gender(request, id):
 
 
 # Platform Breakdown ///////////////////////////////////////////////////////////////////////////////////////
-@cache_page(60*60)
+@cache_page(60*600)
 def breakdown_platform(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))
@@ -1283,7 +1283,7 @@ def breakdown_platform(request, id):
 
 
 # Placement Breakdown ///////////////////////////////////////////////////////////////////////////////////////
-@cache_page(60*60)
+@cache_page(60*600)
 def breakdown_placement(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))

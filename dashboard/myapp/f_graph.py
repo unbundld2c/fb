@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import os
 load_dotenv()
 
-@cache_page(60*60)
+@cache_page(60*600)
 def generate_graph(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))

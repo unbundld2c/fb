@@ -39,7 +39,7 @@ fields = [
     'actions',
 ]
 
-@cache_page(60 * 60)
+@cache_page(60 * 600)
 def campaign_insights(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))

@@ -17,7 +17,7 @@ def calculate_delta(num1, num2):
         result = round((((num1-num2)/num2)*100),2)
         return result
 
-@cache_page(60*60)
+@cache_page(60*600)
 def account_matrix(request, id):
     FacebookAdsApi.init(os.environ['APP_ID'],os.environ['APP_SECRET'],os.environ['ACCESS_TOKEN'])
     account = AdAccount(str(id))
