@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      table {
+        width: 100%;
+        max-height: 50vh;
+        overflow: scroll;
+      }
+      tbody {
+        max-height: 50vh;
+        overflow: scroll;
+      }
+      tr th,
+      tr td {
+        text-align: center;
+        border: 1px solid;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ads</h1>
+    <br>
+    <h2>Yesterday</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign Name</th>
+          <th>Adset Name</th>
+          <th>Ad Name</th>
+          <th>Objective</th>
+          <th>Impressions</th>
+          <th>Spend</th>
+          <th>Reach</th>
+          <th>Frequency</th>
+          <th>Views</th>
+          <th>Add to Cart</th>
+          <th>Initiated Checkout</th>
+          <th>Purchase</th>
+          <th>Purchase ROAS</th>
+          <th>Inline link click</th>
+          <th>outbond click ctr</th>
+          <th>CPM</th>
+          <th>CPC</th>
+          <th>CTR</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in yesterday_ads %}
+        <tr>
+          <td>{{ data.cname }}</td>
+          <td>{{ data.aname }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.objective }}</td>
+          <td>{{ data.impressions }}</td>
+          <td>{{ data.spend }}</td>
+          <td>{{ data.reach }}</td>
+          <td>{{ data.frequency }}</td>
+          <td>{{ data.views }}</td>
+          <td>{{ data.addtocart }}</td>
+          <td>{{ data.checkout }}</td>
+          <td>{{ data.result }}</td>
+          <td>{% if data.purchase_roas == 0 %}0{% else %} {{ data.purchase_roas.0.value }} {% endif %}</td>
+          <td>{{ data.cost_per_inline_link_click }}</td>
+          <td>{% if data.outbound_clicks_ctr == 0 %}0{% else %} {{ data.outbound_clicks_ctr.0.value }} {% endif %}</td>
+          <td>{{ data.cpm }}</td>
+          <td>{{ data.cpc }}</td>
+          <td>{{ data.ctr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <h2>last 3 days</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign Name</th>
+          <th>Adset Name</th>
+          <th>Ad Name</th>
+          <th>Objective</th>
+          <th>Impressions</th>
+          <th>Spend</th>
+          <th>Reach</th>
+          <th>Frequency</th>
+          <th>Views</th>
+          <th>Add to Cart</th>
+          <th>Initiated Checkout</th>
+          <th>Purchase</th>
+          <th>Purchase ROAS</th>
+          <th>Inline link click</th>
+          <th>outbond click ctr</th>
+          <th>CPM</th>
+          <th>CPC</th>
+          <th>CTR</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in last_3_days_ads %}
+        <tr>
+          <td>{{ data.cname }}</td>
+          <td>{{ data.aname }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.objective }}</td>
+          <td>{{ data.impressions }}</td>
+          <td>{{ data.spend }}</td>
+          <td>{{ data.reach }}</td>
+          <td>{{ data.frequency }}</td>
+          <td>{{ data.views }}</td>
+          <td>{{ data.addtocart }}</td>
+          <td>{{ data.checkout }}</td>
+          <td>{{ data.result }}</td>
+          <td>{% if data.purchase_roas == 0 %}0{% else %} {{ data.purchase_roas.0.value }} {% endif %}</td>
+          <td>{{ data.cost_per_inline_link_click }}</td>
+          <td>{% if data.outbound_clicks_ctr == 0 %}0{% else %} {{ data.outbound_clicks_ctr.0.value }} {% endif %}</td>
+          <td>{{ data.cpm }}</td>
+          <td>{{ data.cpc }}</td>
+          <td>{{ data.ctr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <h2>last 7 days</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign Name</th>
+          <th>Adset Name</th>
+          <th>Ad Name</th>
+          <th>Objective</th>
+          <th>Impressions</th>
+          <th>Spend</th>
+          <th>Reach</th>
+          <th>Frequency</th>
+          <th>Views</th>
+          <th>Add to Cart</th>
+          <th>Initiated Checkout</th>
+          <th>Purchase</th>
+          <th>Purchase ROAS</th>
+          <th>Inline link click</th>
+          <th>outbond click ctr</th>
+          <th>CPM</th>
+          <th>CPC</th>
+          <th>CTR</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in last_7_days_ads %}
+        <tr>
+          <td>{{ data.cname }}</td>
+          <td>{{ data.aname }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.objective }}</td>
+          <td>{{ data.impressions }}</td>
+          <td>{{ data.spend }}</td>
+          <td>{{ data.reach }}</td>
+          <td>{{ data.frequency }}</td>
+          <td>{{ data.views }}</td>
+          <td>{{ data.addtocart }}</td>
+          <td>{{ data.checkout }}</td>
+          <td>{{ data.result }}</td>
+          <td>{% if data.purchase_roas == 0 %}0{% else %} {{ data.purchase_roas.0.value }} {% endif %}</td>
+          <td>{{ data.cost_per_inline_link_click }}</td>
+          <td>{% if data.outbound_clicks_ctr == 0 %}0{% else %} {{ data.outbound_clicks_ctr.0.value }} {% endif %}</td>
+          <td>{{ data.cpm }}</td>
+          <td>{{ data.cpc }}</td>
+          <td>{{ data.ctr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <br>
+    <h2>last 30 days</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign Name</th>
+          <th>Adset Name</th>
+          <th>Ad Name</th>
+          <th>Objective</th>
+          <th>Impressions</th>
+          <th>Spend</th>
+          <th>Reach</th>
+          <th>Frequency</th>
+          <th>Views</th>
+          <th>Add to Cart</th>
+          <th>Initiated Checkout</th>
+          <th>Purchase</th>
+          <th>Purchase ROAS</th>
+          <th>Inline link click</th>
+          <th>outbond click ctr</th>
+          <th>CPM</th>
+          <th>CPC</th>
+          <th>CTR</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for data in last_30_days_ads %}
+        <tr>
+          <td>{{ data.cname }}</td>
+          <td>{{ data.aname }}</td>
+          <td>{{ data.name }}</td>
+          <td>{{ data.objective }}</td>
+          <td>{{ data.impressions }}</td>
+          <td>{{ data.spend }}</td>
+          <td>{{ data.reach }}</td>
+          <td>{{ data.frequency }}</td>
+          <td>{{ data.views }}</td>
+          <td>{{ data.addtocart }}</td>
+          <td>{{ data.checkout }}</td>
+          <td>{{ data.result }}</td>
+          <td>{% if data.purchase_roas == 0 %}0{% else %} {{ data.purchase_roas.0.value }} {% endif %}</td>
+          <td>{{ data.cost_per_inline_link_click }}</td>
+          <td>{% if data.outbound_clicks_ctr == 0 %}0{% else %} {{ data.outbound_clicks_ctr.0.value }} {% endif %}</td>
+          <td>{{ data.cpm }}</td>
+          <td>{{ data.cpc }}</td>
+          <td>{{ data.ctr }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

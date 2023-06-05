@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width:100%
+        }
+        tr th, tr td{
+            text-align: center;
+            border: 1px solid;
+        }
+    </style>
+</head>
+<body>
+    <h1>Campaign Insights</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Account ID</th>
+      <th>Campaign ID</th>
+      <th>Campaign Name</th>
+      <th>Clicks</th>
+      <th>Impressions</th>
+      <th>Spend</th>
+      <th>actions</th>
+      <!-- <th>Reach</th> -->
+      <!-- <th>Frequency</th>
+      <th>CTR</th>
+      <th>CPM</th>
+      <th>CPP</th>
+      <th>CPC</th>
+      <th>Objective</th>
+      <th>Inline Click</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    {% for campaign in campaigns %}
+    <tr>
+      <td>{{ campaign.accountid }}</td>
+      <td>{{ campaign.id }}</td>
+      <td>{{ campaign.name }}</td>
+      <td>{{ campaign.clicks }}</td>
+      <td>{{ campaign.impressions }}</td>
+      <td>{{ campaign.spend }}</td>
+      <td>{{ campaign.actions }}</td>
+      <!-- <td>{{ campaign.reach }}</td> -->
+      <!-- <td>{{ campaign.frequency }}</td>
+      <td>{{ campaign.ctr }}</td>
+      <td>{{ campaign.cpm }}</td>
+      <td>{{ campaign.cpp }}</td>
+      <td>{{ campaign.cpc }}</td>
+      <td>{{ campaign.objective }}</td>
+      <td>{{ campaign.inlineClick }}</td> -->
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>

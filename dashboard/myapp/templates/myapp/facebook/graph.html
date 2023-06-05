@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .chart-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <h1>Graph</h1>
+    <div class="chart-wrapper">
+      <div style="width: 50%">
+        <canvas id="cpm_chart"></canvas>
+      </div>
+
+      <div style="width: 50%">
+        <canvas id="cpc_chart"></canvas>
+      </div>
+
+      <div style="width: 50%">
+        <canvas id="cpilc_chart"></canvas>
+      </div>
+
+      <div style="width: 50%">
+        <canvas id="occ_chart"></canvas>
+      </div>
+    </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.3.2/dist/chart.min.js"></script>
+    <script>
+      var cpmData = {{ cpm_data|safe }};
+      var cpcData = {{ cpc_data|safe }};
+      var cpilcData = {{ cpilc_data|safe }};
+      var occData = {{ occ_data|safe }};
+
+      var cpmCtx = document.getElementById('cpm_chart').getContext('2d');
+      var cpmChart = new Chart(cpmCtx, {
+        type: 'line',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'CPM',
+            data: cpmData,
+            fill: false,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 1)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks : {
+                callback: function(value, index, values) {
+                  return 'Rs ' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      var cpcCtx = document.getElementById('cpc_chart').getContext('2d');
+      var cpcChart = new Chart(cpcCtx, {
+        type: 'line',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'CPC',
+            data: cpcData,
+            fill: false,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 1)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks : {
+                callback: function(value, index, values) {
+                  return 'Rs ' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      var cpilcCtx = document.getElementById('cpilc_chart').getContext('2d');
+      var cpilcChart = new Chart(cpilcCtx, {
+        type: 'line',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'COST PER INLINE LINK CLICK',
+            data: cpilcData,
+            fill: false,
+            borderColor: 'rgba(255, 206, 86, 1)',
+            backgroundColor: 'rgba(255, 206, 86, 1)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks : {
+                callback: function(value, index, values) {
+                  return 'Rs ' + value;
+                }
+              }
+            }
+          }
+        }
+      });
+
+      var occCtx = document.getElementById('occ_chart').getContext('2d');
+      var occChart = new Chart(occCtx, {
+        type: 'line',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'OUTBOND CLICK CTR',
+            data: occData,
+            fill: false,
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 1)',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks : {
+                callback: function(value, index, values) {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

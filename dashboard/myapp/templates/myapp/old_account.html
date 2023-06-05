@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            width:100%
+        }
+        tr th, tr td{
+            text-align: center;
+            border: 1px solid;
+            padding:1%;
+        }
+        .up{
+          background-color: green;
+          color: #fff;
+        }
+        .down{
+          background-color: red;
+          color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Facebook Ads Insights</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Date Range</th>
+          <th>Clicks</th>
+          <th>Clicks Delta</th>
+          <th>Result</th>
+          <th>Result Delta</th>
+          <th>Impressions</th>
+          <th>Impressions Delta</th>
+          <th>Spend</th>
+          <th>Spend Delta</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Yesterday</td>
+          <td>{{ yesterday.clicks }}</td>
+          <td class="{% if yesterday_delta.clicks >= 0 %} up {% else %} down {% endif %}" >{{ yesterday_delta.clicks }} %</td>
+          <td>{{ yesterday.result }}</td>
+          <td class="{% if yesterday_delta.result >= 0 %} up {% else %} down {% endif %}" >{{ yesterday_delta.result }} %</td>
+          <td>{{ yesterday.impressions }}</td>
+          <td class="{% if yesterday_delta.impressions >= 0 %} up {% else %} down {% endif %}" >{{ yesterday_delta.impressions }} %</td>
+          <td>{{ yesterday.spend }}</td>
+          <td class="{% if yesterday_delta.spend >= 0 %} up {% else %} down {% endif %}" >{{ yesterday_delta.spend }} %</td>
+        </tr>
+        <tr>
+          <td>Last 7 Days</td>
+          <td>{{ last_7_days.clicks }}</td>
+          <td class="{% if last_7_days_delta.clicks >= 0 %} up {% else %} down {% endif %}" >{{ last_7_days_delta.clicks }} %</td>
+          <td>{{ last_7_days.result }}</td>
+          <td class="{% if last_7_days_delta.result >= 0 %} up {% else %} down {% endif %}" >{{ last_7_days_delta.result }} %</td>
+          <td>{{ last_7_days.impressions }}</td>
+          <td class="{% if last_7_days_delta.impressions >= 0 %} up {% else %} down {% endif %}" >{{ last_7_days_delta.impressions }} %</td>
+          <td>{{ last_7_days.spend }}</td>
+          <td class="{% if last_7_days_delta.spend >= 0 %} up {% else %} down {% endif %}" >{{ last_7_days_delta.spend }} %</td>
+        </tr>
+        <tr>
+          <td>Month to Date</td>
+          <td>{{ month_start.clicks }}</td>
+          <td class="{% if month_start_delta.clicks >= 0 %} up {% else %} down {% endif %}" >{{ month_start_delta.clicks }} %</td>
+          <td>{{ month_start.result }}</td>
+          <td class="{% if month_start_delta.result >= 0 %} up {% else %} down {% endif %}" >{{ month_start_delta.result }} %</td>
+          <td>{{ month_start.impressions }}</td>
+          <td class="{% if month_start_delta.impressions >= 0 %} up {% else %} down {% endif %}" >{{ month_start_delta.impressions }} %</td>
+          <td>{{ month_start.spend }}</td>
+          <td class="{% if month_start_delta.spend >= 0 %} up {% else %} down {% endif %}" >{{ month_start_delta.spend }} %</td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>

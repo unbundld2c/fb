@@ -1,0 +1,559 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Insights - {{ yesterday.account_name }}</h1>
+      </div>
+    <div class="head">
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/graph"
+          >View Graph</a
+        ></span
+      >
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/campaigns"
+          >View Campaigns</a
+        ></span
+      >
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/adsets"
+          >View Adsets</a
+        ></span
+      >
+      <!-- <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/ads"
+          >View Ads</a
+        ></span
+      > -->
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/breakdown-age"
+          >Age Breakdown</a
+        ></span
+      >
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/breakdown-gender"
+          >Gender Breakdown</a
+        ></span
+      >
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/breakdown-platform"
+          >Platform Breakdown</a
+        ></span
+      >
+      <span
+        ><a href="/facebook/act_{{yesterday.account_id}}/breakdown-placement"
+          >Placement Breakdown</a
+        ></span
+      >
+    </div>
+
+
+    <h3>Yesterday</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class=wrapper>
+                {{ yesterday.spend }}  
+                <span class="delta">
+                  {{ yesterday_delta.spend }}%
+                  {% if yesterday_delta.spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.cpm }}  
+                <span class="delta">
+                  {{ yesterday_delta.cpm }}%
+                  {% if yesterday_delta.cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.impressions }}  
+                <span class="delta">
+                  {{ yesterday_delta.impressions }}%
+                  {% if yesterday_delta.impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.reach }}  
+                <span class="delta">
+                  {{ yesterday_delta.reach }}%
+                  {% if yesterday_delta.reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.result }}  
+                <span class="delta">
+                  {{ yesterday_delta.result }}
+                  {% if yesterday_delta.result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.purchase_roas }}  
+                <span class="delta">
+                  {{ yesterday_delta.purchase_roas }}%
+                  {% if yesterday_delta.purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.frequency }}  
+                <span class="delta">
+                  {{ yesterday_delta.frequency }}%
+                  {% if yesterday_delta.frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.cpc }}  
+                <span class="delta">
+                  {{ yesterday_delta.cpc }}%
+                  {% if yesterday_delta.cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.cost_per_inline_link_click }}%  
+                <span class="delta">
+                  {{ yesterday_delta.cost_per_inline_link_click }}%
+                  {% if yesterday_delta.cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.ctr }}%
+                <span class="delta">
+                  {{ yesterday_delta.ctr }}%
+                  {% if yesterday_delta.ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class="wrapper">
+                {{ yesterday.outbound_clicks_ctr }}%  
+                <span class="delta">
+                  {{ yesterday_delta.outbound_clicks_ctr }}%
+                  {% if yesterday_delta.outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <h3>Last 3 Days</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.spend }}  
+                <span class="delta">
+                  {{ last_3_days_delta.spend }}%
+                  {% if last_3_days_delta.spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.cpm }}  
+                <span class="delta">
+                  {{ last_3_days_delta.cpm }}%
+                  {% if last_3_days_delta.cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.impressions }}  
+                <span class="delta">
+                  {{ last_3_days_delta.impressions }}%
+                  {% if last_3_days_delta.impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.reach }}  
+                <span class="delta">
+                  {{ last_3_days_delta.reach }}%
+                  {% if last_3_days_delta.reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.result }}  
+                <span class="delta">
+                  {{ last_3_days_delta.result }}
+                  {% if last_3_days_delta.result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.purchase_roas }}  
+                <span class="delta">
+                  {{ last_3_days_delta.purchase_roas }}%
+                  {% if last_3_days_delta.purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.frequency }}  
+                <span class="delta">
+                  {{ last_3_days_delta.frequency }}%
+                  {% if last_3_days_delta.frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.cpc }}  
+                <span class="delta">
+                  {{ last_3_days_delta.cpc }}%
+                  {% if last_3_days_delta.cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.cost_per_inline_link_click }}%  
+                <span class="delta">
+                  {{ last_3_days_delta.cost_per_inline_link_click }}%
+                  {% if last_3_days_delta.cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.ctr }}%  
+                <span class="delta">
+                  {{ last_3_days_delta.ctr }}%
+                  {% if last_3_days_delta.ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_3_days.outbound_clicks_ctr }}%  
+                <span class="delta">
+                  {{ last_3_days_delta.outbound_clicks_ctr }}%
+                  {% if last_3_days_delta.outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <h3>Last 7 Days</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.spend }}  
+                <span class="delta">
+                  {{ last_7_days_delta.spend }}%
+                  {% if last_7_days_delta.spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.cpm }}  
+                <span class="delta">
+                  {{ last_7_days_delta.cpm }}%
+                  {% if last_7_days_delta.cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.impressions }}  
+                <span class="delta">
+                  {{ last_7_days_delta.impressions }}%
+                  {% if last_7_days_delta.impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.reach }}  
+                <span class="delta">
+                  {{ last_7_days_delta.reach }}%
+                  {% if last_7_days_delta.reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.result }}  
+                <span class="delta">
+                  {{ last_7_days_delta.result }}
+                  {% if last_7_days_delta.result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.purchase_roas }}  
+                <span class="delta">
+                  {{ last_7_days_delta.purchase_roas }}%
+                  {% if last_7_days_delta.purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.frequency }}  
+                <span class="delta">
+                  {{ last_7_days_delta.frequency }}%
+                  {% if last_7_days_delta.frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.cpc }}  
+                <span class="delta">
+                  {{ last_7_days_delta.cpc }}%
+                  {% if last_7_days_delta.cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.cost_per_inline_link_click }}%  
+                <span class="delta">
+                  {{ last_7_days_delta.cost_per_inline_link_click }}%
+                  {% if last_7_days_delta.cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.ctr }}%  
+                <span class="delta">
+                  {{ last_7_days_delta.ctr }}%
+                  {% if last_7_days_delta.ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_7_days.outbound_clicks_ctr }}%  
+                <span class="delta">
+                  {{ last_7_days_delta.outbound_clicks_ctr }}%
+                  {% if last_7_days_delta.outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <h3>Last 30 Days</h3>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.spend }}  
+                <span class="delta">
+                  {{ last_30_days_delta.spend }}%
+                  {% if last_30_days_delta.spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.cpm }}  
+                <span class="delta">
+                  {{ last_30_days_delta.cpm }}%
+                  {% if last_30_days_delta.cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.impressions }}  
+                <span class="delta">
+                  {{ last_30_days_delta.impressions }}%
+                  {% if last_30_days_delta.impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.reach }}  
+                <span class="delta">
+                  {{ last_30_days_delta.reach }}%
+                  {% if last_30_days_delta.reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.result }}  
+                <span class="delta">
+                  {{ last_30_days_delta.result }}
+                  {% if last_30_days_delta.result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.purchase_roas }}  
+                <span class="delta">
+                  {{ last_30_days_delta.purchase_roas }}%
+                  {% if last_30_days_delta.purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.frequency }}  
+                <span class="delta">
+                  {{ last_30_days_delta.frequency }}%
+                  {% if last_30_days_delta.frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.cpc }}  
+                <span class="delta">
+                  {{ last_30_days_delta.cpc }}%
+                  {% if last_30_days_delta.cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.cost_per_inline_link_click }}  
+                <span class="delta">
+                  {{ last_30_days_delta.cost_per_inline_link_click }}%
+                  {% if last_30_days_delta.cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.ctr }}  
+                <span class="delta">
+                  {{ last_30_days_delta.ctr }}%
+                  {% if last_30_days_delta.ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                {{ last_30_days.outbound_clicks_ctr }}  
+                <span class="delta">
+                  {{ last_30_days_delta.outbound_clicks_ctr }}%
+                  {% if last_30_days_delta.outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                </span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <br />
+  </div>
+  </body>
+</html>

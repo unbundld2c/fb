@@ -1,0 +1,183 @@
+body {
+  margin: 0;
+}
+.table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+  margin-bottom: 20px; /* Add margin-bottom to create space */
+}
+table {
+  width: auto;
+  overflow: scroll;
+  border-collapse: separate;
+  border-spacing: 10px 0;
+}
+thead {
+  color: #fff;
+}
+table thead tr th {
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
+  background: #3b5998;
+}
+/* tbody {
+  max-height: 50vh;
+  overflow: scroll;
+} */
+/* table tbody tr td {
+  border-radius: 0 0 20px 20px;
+  background: #eee;
+} */
+
+tr th,
+tr td {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  min-width: 250px;
+  word-break: break-word;
+  margin-bottom: 10px; /* Add margin-bottom to create space between cells */
+}
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.delta {
+  position: relative;
+  display: inline;
+}
+.up {
+  width: 0;
+  height: 0;
+  border-top: 15px solid #08c608;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  transform: rotate(180deg);
+  margin-left: 10%;
+  position: absolute;
+  top: 5%;
+}
+.down {
+  width: 0;
+  height: 0;
+  border-top: 15px solid red;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  transform: rotate(0deg);
+  margin-left: 10%;
+  position: absolute;
+  top: 5%;
+}
+.head {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+}
+.head span a {
+  text-decoration: none;
+  padding: 5px 20px;
+  border: 2px solid #3b5998;
+  border-radius: 5px;
+  color: #fff;
+  background: #3b5998;
+  letter-spacing: 1px;
+}
+/* .head span a:hover {
+  background-color: #000;
+  color: #fff;
+} */
+.text-center {
+  text-align: center;
+}
+.header {
+  margin-bottom: 3%;
+  text-align: center;
+  color: #fff;
+  background: #3b5998;
+  padding: 1px;
+}
+
+/* Customize the scrollbar */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 5px;
+  margin-top: 2rem;
+}
+
+/* Track */
+.table-wrapper::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Color of the track */
+}
+
+/* Handle */
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar handle */
+  border-radius: 20px; /* Rounded corners */
+}
+
+/* Handle on hover */
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the scrollbar handle on hover */
+}
+tbody tr td:hover {
+  transform: scale(1.05); /* Scale the row by 2% on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+  cursor: pointer;
+}
+
+tbody tr td {
+  transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+
+.container {
+  /* background-image: url('./4907157.jpg');
+  background-size: auto; */
+  padding: 2rem;
+}
+ul {
+  list-style: none;
+}
+li {
+  padding: 5px 20px;
+  margin: 1rem 0;
+}
+li span {
+  padding: 5px 20px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  width: fit-content;
+  border-radius: 5px;
+}
+a {
+  text-decoration: none;
+}
+.download_wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.download_wrapper h2{
+  margin-left: 2%;
+}
+.download_wrapper form{
+  margin-right: 2%;
+}
+.download_wrapper form button{
+  padding: 10px 20px;
+    background: #3b5998;
+    color: #fff;
+    box-shadow: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.selectOption select{
+  padding: 5px 15px;
+  margin: 5px;
+  width: max-content;
+}

@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Document</title>
+      <link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}">
+    </head>
+  <body>
+    <div class="container">
+      <h1>List of All Ad Accounts</h1>
+      <ul>
+        {% for data in account_list %} {% if data.account_status == 1 %}
+        <li>
+          <span>{{ data.name }}</span> -
+          <span><a href="{{ data.id }}/">Facebook</a></span>
+          {% if data.shopify == 1 %}
+            <span><a href="/shopify?id={{data.s_id}}">Shopify</a></span>
+          {%endif%}
+        </li>
+        {%endif%} {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>

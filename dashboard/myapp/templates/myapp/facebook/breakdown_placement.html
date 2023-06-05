@@ -1,0 +1,642 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Placement Breakdown Metrix</h1>
+      </div>
+    <div class="download_wrapper">
+      <h3>Yesterday Placement Breakdown</h3>
+      <form id="downloadForm" method="post" action="">
+          {% csrf_token %}
+          <input type="hidden" name="name" value="yesterday">
+          <button type="submit" class="download btn btn-primary">Download CSV</button>
+      </form>
+    </div>
+    <br>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Publisher Platform</th>
+            <th>Publisher Platform</th>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in yesterday_placement_breakdown %}
+          <tr>
+            <td>
+              <span class=wrapper>
+                  {{ data.publisher_platform }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.platform_position }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.spend }}  
+                  <span class="delta">
+                    {{ data.delta_spend }}%
+                    {% if data.delta_spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpm }}  
+                  <span class="delta">
+                    {{ data.delta_cpm }}%
+                    {% if data.delta_cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.impressions }}  
+                  <span class="delta">
+                    {{ data.delta_impressions }}%
+                    {% if data.delta_impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.reach }}  
+                  <span class="delta">
+                    {{ data.delta_reach }}%
+                    {% if data.delta_reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.result }}  
+                  <span class="delta">
+                    {{ data.delta_result }}%
+                    {% if data.delta_result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.purchase_roas }}  
+                  <span class="delta">
+                    {{ data.delta_purchase_roas }}%
+                    {% if data.delta_purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.frequency }}  
+                  <span class="delta">
+                    {{ data.delta_frequency }}%
+                    {% if data.delta_frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpc }}  
+                  <span class="delta">
+                    {{ data.delta_cpc }}%
+                    {% if data.delta_cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cost_per_inline_link_click }}%  
+                  <span class="delta">
+                    {{ data.delta_cost_per_inline_link_click }}%
+                    {% if data.delta_cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_ctr }}%
+                    {% if data.delta_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.outbound_clicks_ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_outbound_clicks_ctr }}%
+                    {% if data.delta_outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <div class="download_wrapper">
+      <h3>Last 3 Days Placement Breakdown</h3>
+      <form id="downloadForm" method="post" action="">
+          {% csrf_token %}
+          <input type="hidden" name="name" value="last_3_days">
+          <button type="submit" class="download btn btn-primary">Download CSV</button>
+      </form>
+    </div><br>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Publisher Platform</th>
+            <th>Publisher Platform</th>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in last_3_days_placement_breakdown %}
+          <tr>
+            <td>
+              <span class=wrapper>
+                  {{ data.publisher_platform }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.platform_position }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.spend }}  
+                  <span class="delta">
+                    {{ data.delta_spend }}%
+                    {% if data.delta_spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpm }}  
+                  <span class="delta">
+                    {{ data.delta_cpm }}%
+                    {% if data.delta_cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.impressions }}  
+                  <span class="delta">
+                    {{ data.delta_impressions }}%
+                    {% if data.delta_impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.reach }}  
+                  <span class="delta">
+                    {{ data.delta_reach }}%
+                    {% if data.delta_reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.result }}  
+                  <span class="delta">
+                    {{ data.delta_result }}%
+                    {% if data.delta_result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.purchase_roas }}  
+                  <span class="delta">
+                    {{ data.delta_purchase_roas }}%
+                    {% if data.delta_purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.frequency }}  
+                  <span class="delta">
+                    {{ data.delta_frequency }}%
+                    {% if data.delta_frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpc }}  
+                  <span class="delta">
+                    {{ data.delta_cpc }}%
+                    {% if data.delta_cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cost_per_inline_link_click }}%  
+                  <span class="delta">
+                    {{ data.delta_cost_per_inline_link_click }}%
+                    {% if data.delta_cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_ctr }}%
+                    {% if data.delta_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.outbound_clicks_ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_outbound_clicks_ctr }}%
+                    {% if data.delta_outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <div class="download_wrapper">
+      <h3>Last 7 Days Placement Breakdown</h3>
+      <form id="downloadForm" method="post" action="">
+          {% csrf_token %}
+          <input type="hidden" name="name" value="last_7_days">
+          <button type="submit" class="download btn btn-primary">Download CSV</button>
+      </form>
+    </div>
+      <br>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Publisher Platform</th>
+            <th>Publisher Platform</th>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in last_7_days_placement_breakdown %}
+          <tr>
+            <td>
+              <span class=wrapper>
+                  {{ data.publisher_platform }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.platform_position }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.spend }}  
+                  <span class="delta">
+                    {{ data.delta_spend }}%
+                    {% if data.delta_spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpm }}  
+                  <span class="delta">
+                    {{ data.delta_cpm }}%
+                    {% if data.delta_cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.impressions }}  
+                  <span class="delta">
+                    {{ data.delta_impressions }}%
+                    {% if data.delta_impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.reach }}  
+                  <span class="delta">
+                    {{ data.delta_reach }}%
+                    {% if data.delta_reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.result }}  
+                  <span class="delta">
+                    {{ data.delta_result }}%
+                    {% if data.delta_result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.purchase_roas }}  
+                  <span class="delta">
+                    {{ data.delta_purchase_roas }}%
+                    {% if data.delta_purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.frequency }}  
+                  <span class="delta">
+                    {{ data.delta_frequency }}%
+                    {% if data.delta_frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpc }}  
+                  <span class="delta">
+                    {{ data.delta_cpc }}%
+                    {% if data.delta_cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cost_per_inline_link_click }}%  
+                  <span class="delta">
+                    {{ data.delta_cost_per_inline_link_click }}%
+                    {% if data.delta_cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_ctr }}%
+                    {% if data.delta_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.outbound_clicks_ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_outbound_clicks_ctr }}%
+                    {% if data.delta_outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <br />
+    <div class="download_wrapper">
+      <h3>Last 30 Days Placement Breakdown</h3>
+      <form id="downloadForm" method="post" action="">
+          {% csrf_token %}
+          <input type="hidden" name="name" value="last_30_days">
+          <button type="submit" class="download btn btn-primary">Download CSV</button>
+      </form>
+    </div>
+    <br>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Publisher Platform</th>
+            <th>Publisher Platform</th>
+            <th>Spend</th>
+            <th>CPM</th>
+            <th>Impressions</th>
+            <th>Reach</th>
+            <th>Result</th>
+            <th>purchase_roas</th>
+            <th>frequency</th>
+            <th>cpc</th>
+            <th>cost_per_inline_link_click</th>
+            <th>ctr</th>
+            <th>outbound_clicks_ctr</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for data in last_30_days_placement_breakdown %}
+          <tr>
+            <td>
+              <span class=wrapper>
+                  {{ data.publisher_platform }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.platform_position }}  
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.spend }}  
+                  <span class="delta">
+                    {{ data.delta_spend }}%
+                    {% if data.delta_spend > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpm }}  
+                  <span class="delta">
+                    {{ data.delta_cpm }}%
+                    {% if data.delta_cpm > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.impressions }}  
+                  <span class="delta">
+                    {{ data.delta_impressions }}%
+                    {% if data.delta_impressions > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.reach }}  
+                  <span class="delta">
+                    {{ data.delta_reach }}%
+                    {% if data.delta_reach > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.result }}  
+                  <span class="delta">
+                    {{ data.delta_result }}%
+                    {% if data.delta_result > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.purchase_roas }}  
+                  <span class="delta">
+                    {{ data.delta_purchase_roas }}%
+                    {% if data.delta_purchase_roas > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.frequency }}  
+                  <span class="delta">
+                    {{ data.delta_frequency }}%
+                    {% if data.delta_frequency > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cpc }}  
+                  <span class="delta">
+                    {{ data.delta_cpc }}%
+                    {% if data.delta_cpc > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.cost_per_inline_link_click }}%  
+                  <span class="delta">
+                    {{ data.delta_cost_per_inline_link_click }}%
+                    {% if data.delta_cost_per_inline_link_click > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_ctr }}%
+                    {% if data.delta_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+            <td>
+              <span class=wrapper>
+                  {{ data.outbound_clicks_ctr }}%  
+                  <span class="delta">
+                    {{ data.delta_outbound_clicks_ctr }}%
+                    {% if data.delta_outbound_clicks_ctr > 0 %}<span class="up"></span>{% else %}<span class="down"></span>{% endif %}
+                  </span>
+                </span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <script>
+      document.addEventListener("click", (e) => {
+        if(e.target.classList.contains("download") || (e.target).closest(".download")){
+          let form = (e.target).closest("form")
+          let dataVariable = form.querySelector("input[name='name']").value;
+          let data
+          if (dataVariable == 'yesterday'){
+            data = {{ yesterday_placement_breakdown|safe }}
+          }else if(dataVariable == 'last_3_days'){
+            data = {{ last_3_days_placement_breakdown|safe }}
+          }else if(dataVariable == 'last_7_days'){
+            data = {{ last_7_days_placement_breakdown|safe }}
+          }else if(dataVariable == 'last_30_days'){
+            data = {{ last_30_days_placement_breakdown|safe }}
+          }
+          fetch('/download/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': form.querySelector('input[name="csrfmiddlewaretoken"]').value 
+              },
+              body: JSON.stringify(data)
+          })
+          .then(function(response) {
+              if (response.ok) {
+                  response.blob().then(function(blob) {
+                      var downloadLink = document.createElement('a');
+                      downloadLink.href = URL.createObjectURL(blob);
+                      downloadLink.download = 'data.csv';
+                      downloadLink.click();
+                  });
+              } else {
+                  console.error('Error:', response.statusText);
+              }
+          })
+          .catch(function(error) {
+              console.error('Error:', error);
+          });
+          // console.log(data)
+        }
+      })
+    </script>
+  </body>
+</html>
